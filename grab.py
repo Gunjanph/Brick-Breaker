@@ -6,7 +6,7 @@ from powerup import Powerup
 class Grab(Powerup):
     def __init__(self, x, y):
         super().__init__(x, y)
-        self.shape = ".-."
+        self.shape = "@"
         self.number = 4
         self.time = 15
     

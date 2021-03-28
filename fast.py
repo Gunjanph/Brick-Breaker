@@ -6,7 +6,7 @@ from powerup import Powerup
 class Fast(Powerup):
     def __init__(self, x, y):
         super().__init__(x, y)
-        self.shape = ">>"
+        self.shape = ">"
         self.number = 3
         self.time = 5
     

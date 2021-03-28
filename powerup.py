@@ -5,7 +5,8 @@ init()
 class Powerup:
     def __init__(self, x, y):
         self.activate = 0
-        self.velx = 2
+        self.velx = 1
+        self.vely = 0
         self.number = 0
         self.x = x
         self.y = y

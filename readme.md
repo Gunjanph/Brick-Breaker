@@ -36,32 +36,51 @@ python3 main.py
 - The collision of ball with bricks, paddle and wall is implemented.
 - 3 different color bricks are implemented and unbreakable bricks are also implemented. Destroying each brick results in increase in score accordingly.
 - 3 lives to win the game.
-- 150 secs to win the game.
+- Bricks start to fall after 60 sec in each level and you will lose if the lowest brick touches the paddle.
 ## Powerups
+Projected at the ball's velocity befor collision. After projection it have a gravity effect.
 #### Expand
 - It increases the size of paddle by 2.
 - Max size could be 9
-- Shape: `<==>` 
+- Shape: `+` 
 #### Shrink
 - It decreases the size of paddle by 2.
 - Min sizecould be 3
-- Shape: `=><=` 
+- Shape: `_` 
 #### Fast
 - It increases the speed of ball.
 - Max speed could be 2
 - Min speed could be 0
-- Shape: `>>`
+- Shape: `>`
 #### Thru
 - It enables the ball to destry and go through any ball.
-- Shape: `t`
+- Shape: `?`
 #### Grab
 - It allows the paddle to grab the ball on contact and relaunch the ball at will.
-- Shape: `.-.`
+- Shape: `@`
+#### Shooting Paddle
+- It enables the paddle shoots the bullets at the gap of some time.
+- Shape: `|`
+
+## Levels
+- 3 levels
+1. level 1 has a rainbow brick implemented and all other basic functions along with level 2.
+2. level 3 is the boss level.
+
 ## Bonus
 *Exploding Bricks:*
 - 6 in a row.
 - On contact chain reaction happens and breaks the adjacent bricks(diagonally, vertically and horizontally)
+*Sound:*
+- Have sound effects on hitting paddle, collision with bricks or walls, on losing the game etc.
 
+## Boss Enemy
+- The final level of game.
+- It is the UFO that follows the paddle.
+- Regularly drops the bomb.
+- On the direct hit by ball, reduces it's health.
+- Spawn defensive bricks at health of 50 and 20 remaining.
+- Total health is 100.
 ## OOPS
 #### Inheritance
 Inheritance allows us to define a class that inherits all the methods and properties from another class.

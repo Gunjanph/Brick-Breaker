@@ -6,7 +6,7 @@ from powerup import Powerup
 class Thru(Powerup):
     def __init__(self, x, y):
         super().__init__(x, y)
-        self.shape = "t"
+        self.shape = "?"
         self.number = 5
         self.time = 10
     

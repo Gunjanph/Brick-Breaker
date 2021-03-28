@@ -9,11 +9,12 @@ class Explode(Bricks):
         super().__init__()
         self.strength = -10
 
-    def exappear_brick(self, grid):
-        for j in range(48,60,2):
-            grid[6][j] = self.bricks
-        for j in range(49,61,2):
-            grid[6][j] = -10
+    def exappear_brick(self, grid, level):
+        if level == 1 or level == 2:
+            for j in range(48,60,2):
+                grid[6][j] = self.bricks
+            for j in range(49,61,2):
+                grid[6][j] = -10
 
 
     # isnumber use karna h!!!
