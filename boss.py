@@ -26,7 +26,6 @@ class Boss(Props):
         self.shape = a
 
     def starting_position(self, grid):
-        # print(self.i, self.j)
         for k in range(self.j):
             for l in range(39):
                 grid[self.x+k][self.y+l] = self.shape[k][l]

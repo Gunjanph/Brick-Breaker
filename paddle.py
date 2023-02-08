@@ -17,19 +17,15 @@ class Paddle(Props):
         return len(self.shape)
     
     def expand(self):
-        # quit()
         for i in range(2):
             self.shape.append("I")
 
     def shrink(self):
-        # quit()
         length = len(self.shape)
         for i in range(2):
             self.shape.pop(length-i-1)
-        # print(len(self.shape))
 
     def right_collision(self, xcoo, velx):
-        # print(len(self.shape))
         if self.y + 2 < 109-len(self.shape):
             if xcoo == 27 and velx == 0:
                 return 1
@@ -39,9 +35,7 @@ class Paddle(Props):
             return 0
     
     def left_collision(self, xcoo, velx):
-        # print(len(self.shape))
         if self.y - 2 >= 0:
-            # print(xcoo, ycoo, self.y+len(self.shape))
             if xcoo == 27 and velx == 0:
                 return 1
             else:

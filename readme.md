@@ -16,7 +16,7 @@ pip3 install numpy
 To play:
 
 ```bash
-cd 2019111035
+cd Brick-Breaker
 ```
 ```python3
 python3 main.py

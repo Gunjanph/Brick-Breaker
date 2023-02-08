@@ -1,5 +1,4 @@
 import os
-# from bricks import
 from colorama import init, Fore, Back, Style
 init()
 class Board:
@@ -30,9 +29,6 @@ class Board:
 				print(Back.GREEN + " ".center(self.columns) + Style.RESET_ALL)
 			for j in range(self.columns):
 				if self.matrix[i][j] == "X":
-					# if i+row == 28:
-					# 	print("GAME OVER :'(")
-					# 	quit()
 					temp = 1
 					if self.matrix[i][j+1] == 1:
 						print(Fore.BLUE + self.matrix[i][j],end='')

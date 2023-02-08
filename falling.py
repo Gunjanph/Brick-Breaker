@@ -13,7 +13,6 @@ class Falling_Brick(Bricks):
         for i in range(obj_board.rows-1, -1, -1):
             for j in range(obj_board.columns):
                 if obj_board.matrix[i][j] == "X":
-                    # print(i,j)
                     if i+1 == 28:
                         print("GAME OVER :'(")
                         quit()

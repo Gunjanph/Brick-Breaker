@@ -1,13 +1,8 @@
 def find_line(point1, point2):
 	return np.cross(list(point1)+[1], list(point2)+[1])
 
-# point1 = (0,0)
-# point2 = (2,3)
-# point2 = (0,4)
-
 def find_points(point1, point2):
 	a,b,c = find_line(point1,point2)
-	# print(a,b,c)
 	x1,y1 = point1
 	x2,y2 = point2
 	xv = 2*(x1<x2)-1

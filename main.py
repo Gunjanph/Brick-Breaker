@@ -42,18 +42,12 @@ obj_paddle = Paddle(28,47,1)
 obj_paddle.starting_position(obj_board.matrix)
 
 ball_y = randrange(47,53)
-# ball_y = 50
+
 obj_ball = Ball(27,ball_y,1)
 obj_ball.starting_position(obj_board.matrix)
 
 obj_brick = Brick()
 obj_brick.appear_brick(obj_board.matrix, 1, 0)
-
-# obj_brick2 = Brick2()
-# obj_brick2.appear_brick2(obj_board.matrix)
-
-# obj_brick3 = Brick3()
-# obj_brick3.appear_brick3(obj_board.matrix)
 
 obj_unbrick = UnbreakableBrick()
 obj_unbrick.appear_unb(obj_board.matrix,1)
@@ -68,7 +62,6 @@ obj_rainbow.rainbow_appear_brick(obj_board)
 
 obj_boss = Boss(2, 31, 1)
 
-# obj_powerup = Powerup()
 powerup_list = []
 start_powerup = []
 active_powerup = []
@@ -83,13 +76,8 @@ obj_ball.vely = 0
 def find_line(point1, point2):
 	return np.cross(list(point1)+[1], list(point2)+[1])
 
-# point1 = (0,0)
-# point2 = (2,3)
-# point2 = (0,4)
-
 def find_points(point1, point2):
 	a,b,c = find_line(point1,point2)
-	# print(a,b,c)
 	x1,y1 = point1
 	x2,y2 = point2
 	xv = 2*(x1<x2)-1
@@ -110,11 +98,8 @@ def find_points(point1, point2):
 
 	points.sort(key = lambda x: x[0], reverse=(xv==-1))
 	return points
-# points = find_points(point1, point2, 1)
-# print(points)
 
 def reposition():
-	# obj_ball.y = randrange(47,53)
 	obj_ball.y = 50
 	obj_paddle.y = 47
 	obj_paddle.x = 28
@@ -148,21 +133,18 @@ def reposition():
 
 def powup(numb, x, y):
 	if numb == 1:
-		# quit()
 		obj_shrink = Shrink(x, y)
 		obj_shrink.starting_position(obj_board.matrix, x, y)
 		powerup_list.append(obj_shrink)
 		start_powerup.append(obj_shrink)
 	
 	elif numb == 2:
-		# quit()
 		obj_expand = Expand(x, y)
 		obj_expand.starting_position(obj_board.matrix, x, y)
 		powerup_list.append(obj_expand)
 		start_powerup.append(obj_expand)
 
 	elif numb == 3:
-		# quit()
 		obj_fast = Fast(x, y)
 		obj_fast.starting_position(obj_board.matrix, x, y)
 		powerup_list.append(obj_fast)
@@ -267,7 +249,6 @@ def bossbomb():
 
 def movepaddle():
 	char = input_to(get)
-	# print(char)
 	bx = obj_ball.get_x()
 	bay = obj_ball.get_y()
 	by = obj_ball.get_velx()
@@ -281,13 +262,8 @@ def movepaddle():
 	
 	if char == 'd':
 		move_right = obj_paddle.right_collision(bx, by)
-		# print(bx, by)
 		
 		if(move_right == 2):
-			# obj_ball.direction = 1
-			# obj_ball.disappear_ball(obj_board)
-			# obj_ball.y+=1
-			# obj_ball.reappear_ball(obj_board)
 			if obj_config.level == 1 or obj_config.level == 2:
 				obj_paddle.direction = 1
 				obj_paddle.disappear_paddle(obj_board)
@@ -303,7 +279,6 @@ def movepaddle():
 					obj_boss.disappear_boss(obj_board)
 					obj_boss.y += 2
 					obj_boss.appear_boss(obj_board)
-			# print(obj_paddle.y)
 		
 		if(move_right == 1):
 			if obj_config.level == 1 or obj_config.level == 2:
@@ -325,7 +300,6 @@ def movepaddle():
 					obj_paddle.disappear_paddle(obj_board)
 					obj_paddle.y+=2
 					obj_paddle.reappear_paddle(obj_board)
-			# print(obj_paddle.y)
 		
 				if(obj_boss.y+39 <= 107):
 					obj_boss.disappear_boss(obj_board)
@@ -352,7 +326,6 @@ def movepaddle():
 					obj_boss.disappear_boss(obj_board)
 					obj_boss.y -= 2
 					obj_boss.appear_boss(obj_board)
-			# print(obj_paddle.y)
 		
 		if(move_left == 1):
 			if obj_config.level == 1 or obj_config.level == 2:
@@ -397,9 +370,6 @@ def movepaddle():
 		obj_ball.velx = -1
 		obj_ball.vely = vely + (bay - (py + (int)(length/2)))
 
-# def boss_collision():
-# 	if 
-
 def move():
 	x = obj_ball.get_x()
 	y = obj_ball.get_y()
@@ -411,7 +381,6 @@ def move():
 	obj_ball.reappear_ball(obj_board)
 
 def collision():
-	# obj_ball.vely = 1
 	global rainbow_flag
 	x = obj_ball.get_x()
 	y = obj_ball.get_y()
@@ -420,38 +389,16 @@ def collision():
 	vel_x = obj_ball.get_velx()
 	vel_y = obj_ball.get_vely()
 	powerupnumber = 0
-	# # wall
-	# if x <= 1:
-	# 	obj_ball.velx = -vel_x
-	
-	# if x >= 28:
-	# 	obj_ball.number-=1
-		
-	# 	if obj_ball.number == 0:
-	# 		obj_config.life-=1
-	
-	# 		if obj_config.life == 0:
-	# 			print("GAME OVER")
-	# 			quit()
-	# 		else:
-	# 			obj_ball.disappear_ball(obj_board)
-	# 			obj_paddle.disappear_paddle(obj_board)
-	# 			reposition()
-
-	# if y+vel_y >= 109 or y <= 0:
-	# 	obj_ball.vely = -vel_y
 	
 	# paddle
 	if x+vel_x<=29 and y+vel_y<=109:
 		if obj_board.matrix[x+1][y] == "I" or (vel_x==2 and obj_board.matrix[x+2][y] == "I"):
 			if vel_x!=0 or vel_y!=0:
-				# quit()
 				subprocess.Popen(['aplay', './sound/mb_hit.wav'])
 				os.system('clear')
 				if flag == 1:
 					obj_fall.fall_appear_brick(obj_board)
 				if obj_ball.active == 1:
-					# quit()
 					obj_ball.vely = 0
 					obj_ball.velx = 0
 				else:
@@ -460,32 +407,26 @@ def collision():
 	for i in range(len(powerup_list)):
 		if powerup_list[i].x+2 <= 29:
 			if obj_board.matrix[powerup_list[i].x+2][powerup_list[i].y] == "I" or obj_board.matrix[powerup_list[i].x+1][powerup_list[i].y] == "I":
-				# quit()
-				# active_powerup.append((powerup_list[i], time.time()))
 				powerup_list[i].disappear(obj_board)
 				if powerup_list[i].number == 1:
-					# quit()
 					if obj_paddle.get_len() > 3:
 						obj_paddle.disappear_paddle(obj_board)
 						obj_paddle.shrink()
 						obj_paddle.reappear_paddle(obj_board)
 						active_powerup.append((powerup_list[i], time.time()))
 				if powerup_list[i].number == 2:
-					# quit()
 					if obj_paddle.get_len() < 9:
 						obj_paddle.disappear_paddle(obj_board)
 						obj_paddle.expand()
 						obj_paddle.reappear_paddle(obj_board)
 						active_powerup.append((powerup_list[i], time.time()))
 				if powerup_list[i].number == 3:
-					# quit()
 					active_powerup.append((powerup_list[i], time.time()))
 					if obj_ball.velx < 0 and obj_ball.velx >= -1:
 						obj_ball.velx -= 1
 					if obj_ball.velx > 0 and obj_ball.velx <= 1:
 						obj_ball.velx += 1
 				if powerup_list[i].number == 4:
-					# quit()
 					active_powerup.append((powerup_list[i], time.time()))
 					obj_ball.active = 1
 				if powerup_list[i].number == 5:
@@ -533,7 +474,6 @@ def collision():
 	point2 = (x+vel_x,y+vel_y)
 	if vel_x!=0 or vel_y!=0:
 		pts = find_points(point1, point2)
-		# print(pts)
 		if vel_y==0:
 			for i in range(len(pts)):
 				if pts[i][1]<=109 and pts[i][0]<=29:
@@ -587,25 +527,7 @@ def collision():
 								powup(powerupnumber, pts[i][0], pts[i][1])
 							else:
 								obj_config.score += obj_board.matrix[pts[i][0]][pts[i][1]+2]
-						break
-					# elif obj_board.matrix[pts[i][0]][pts[i][1]] != " " or obj_board.matrix[pts[i][0]][pts[i][1]] != "I" or obj_board.matrix[pts[i][0]][pts[i][1]] != "?" or obj_board.matrix[pts[i][0]][pts[i][1]] != "+" or obj_board.matrix[pts[i][0]][pts[i][1]] != "_" or obj_board.matrix[pts[i][0]][pts[i][1]] != ">" or obj_board.matrix[pts[i][0]][pts[i][1]] != "@" or obj_board.matrix[pts[i][0]][pts[i][1]] != "|" or isinstance(obj_board.matrix[pts[i][0]][pts[i][1]], int) != True:
-					# 	obj_ball.velx = -vel_x
-					# 	obj_ball.disappear_ball(obj_board)
-					# 	obj_ball.reappear_ball(obj_board)
-					# 	obj_boss.health -= 10
-					# 	break;
-					# elif obj_board.matrix[pts[i][0]][pts[i][1]-1] != " " or obj_board.matrix[pts[i][0]][pts[i][1]-1] != "I" or obj_board.matrix[pts[i][0]][pts[i][1]-1] != "?" or obj_board.matrix[pts[i][0]][pts[i][1]-1] != "+" or obj_board.matrix[pts[i][0]][pts[i][1]-1] != "_" or obj_board.matrix[pts[i][0]][pts[i][1]-1] != ">" or obj_board.matrix[pts[i][0]][pts[i][1]-1] != "@" or obj_board.matrix[pts[i][0]][pts[i][1]-1] != "|" or isinstance(obj_board.matrix[pts[i][0]][pts[i][1]-1], int) != True:
-					# 	obj_ball.velx = -vel_x
-					# 	obj_ball.disappear_ball(obj_board)
-					# 	obj_ball.reappear_ball(obj_board)
-					# 	obj_boss.health -= 10
-					# 	break;
-					# elif obj_board.matrix[pts[i][0]][pts[i][1]+1] != " " or obj_board.matrix[pts[i][0]][pts[i][1]+1] != "I" or obj_board.matrix[pts[i][0]][pts[i][1]+1] != "?" or obj_board.matrix[pts[i][0]][pts[i][1]+1] != "+" or obj_board.matrix[pts[i][0]][pts[i][1]+1] != "_" or obj_board.matrix[pts[i][0]][pts[i][1]+1] != ">" or obj_board.matrix[pts[i][0]][pts[i][1]+1] != "@" or obj_board.matrix[pts[i][0]][pts[i][1]+1] != "|" or isinstance(obj_board.matrix[pts[i][0]][pts[i][1]+1], int) != True:
-					# 	obj_ball.velx = -vel_x
-					# 	obj_ball.disappear_ball(obj_board)
-					# 	obj_ball.reappear_ball(obj_board)
-					# 	obj_boss.health -= 10
-					# 	break;
+						break;
 					elif obj_board.matrix[pts[i][0]][pts[i][1]] == "-" or obj_board.matrix[pts[i][0]][pts[i][1]] == "=" or obj_board.matrix[pts[i][0]][pts[i][1]] == ":" or obj_board.matrix[pts[i][0]][pts[i][1]] == "(" or obj_board.matrix[pts[i][0]][pts[i][1]] == ")" or obj_board.matrix[pts[i][0]][pts[i][1]] == "*" or obj_board.matrix[pts[i][0]][pts[i][1]] == "`" or obj_board.matrix[pts[i][0]][pts[i][1]] == ".":
 						obj_ball.velx = -vel_x
 						obj_ball.disappear_ball(obj_board)
@@ -641,10 +563,6 @@ def collision():
 								powup(powerupnumber, pts[i][0], pts[i][1])
 							else:
 								obj_config.score += obj_board.matrix[pts[i][0]][pts[i][1]+1]
-						# if (vel_x<0 and vel_y<0) or (vel_x>0 and vel_y>0):
-						# 	obj_ball.velx = -vel_x
-						# else:
-						# 	obj_ball.vely = -vel_y
 						break;
 					elif obj_board.matrix[pts[i][0]][pts[i][1]] == "-" or obj_board.matrix[pts[i][0]][pts[i][1]] == "=" or obj_board.matrix[pts[i][0]][pts[i][1]] == ":" or obj_board.matrix[pts[i][0]][pts[i][1]] == "(" or obj_board.matrix[pts[i][0]][pts[i][1]] == ")" or obj_board.matrix[pts[i][0]][pts[i][1]] == "*" or obj_board.matrix[pts[i][0]][pts[i][1]] == "`" or obj_board.matrix[pts[i][0]][pts[i][1]] == ".":
 						obj_ball.velx = -vel_x
@@ -676,7 +594,6 @@ def collision():
 					os.system('clear')
 					obj_explode.exdisappear_brick(obj_board,laser[i].x+laser[i].velx,laser[i].y,obj_config)
 				else:
-					# print("in laser")
 					powerupnumber = obj_brick.disappear_brick(obj_board, laser[i].x+laser[i].velx, laser[i].y, obj_config)
 					powup(powerupnumber, laser[i].x, laser[i].y)
 				laser[i].disappear(obj_board)
@@ -706,7 +623,6 @@ def collision():
 					os.system('clear')
 					obj_explode.exdisappear_brick(obj_board,bombs[i].x+bombs[i].velx,bombs[i].y,obj_config)
 				else:
-					# print("in bombs")
 					powerupnumber = obj_brick.disappear_brick(obj_board, bombs[i].x+bombs[i].velx, bombs[i].y, obj_config)
 					powup(powerupnumber, bombs[i].x, bombs[i].y)
 				bombs[i].disappear(obj_board)
@@ -738,12 +654,9 @@ y=x
 z=x
 count = 0
 time_bullet = 10
-# collision()
 
 while True:
 	os.system('clear')
-	# else:
-	# 	flag=0
 	obj_config.time = (round(time.time()) - round(x))
 	if obj_config.bullet==1:
 		string = "SCORE: " + str(obj_config.score) + " | LIVES: " + str(obj_config.life) + " | TIME PLAYED: " + str(obj_config.time) + " | LEVEL:" + str(obj_config.level) + " | TIME REMAINING:" + str(time_bullet)
@@ -751,8 +664,6 @@ while True:
 		string = "SCORE: " + str(obj_config.score) + " | LIVES: " + str(obj_config.life) + " | TIME PLAYED: " + str(obj_config.time) + " | LEVEL:" + str(obj_config.level)
 
 	if obj_config.time-obj_config.start_time[obj_config.level-1] >= 60:
-		# print("time:" +str(obj_config.time)+ str(obj_config.start_time))
-		# obj_fall.fall_appear_brick(obj_board)
 		flag = 1
 	else:
 		flag = 0
@@ -763,8 +674,7 @@ while True:
 
 	if obj_boss.health == 20:
 		obj_brick.appear_brick(obj_board.matrix, obj_config.level, health_flag)
-	
-	# obj_board.theyllprintit(string)
+
 	temp = obj_board.theyllprintit(string, obj_config.bullet, obj_config.level, obj_boss.health)
 	if temp == 0:
 		if obj_config.level!=3:
@@ -783,8 +693,6 @@ while True:
 			if time.time() - y >= 0.5:
 				y = time.time()
 				bossbomb()
-			# obj_board.matrix[1][]
-	# movepaddle()
 	movepaddle()
 	move()
 	if obj_config.bullet==1:
@@ -797,6 +705,3 @@ while True:
 	time_bullet = endpowerup()
 	if rainbow_flag == 0 and obj_config.level == 1:
 		obj_rainbow.color(obj_board)
-	# 	move() # move is clearing the last block
-	# count += 1
-	# time.sleep(0.20)

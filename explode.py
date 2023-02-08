@@ -16,12 +16,9 @@ class Explode(Bricks):
             for j in range(49,61,2):
                 grid[6][j] = -10
 
-
-    # isnumber use karna h!!!
     def exdisappear_brick(self, obj_board, x, y, obj_config):
         for j in range(y,109,2):
             if obj_board.matrix[x][j+1] == -10:
-                # time.sleep(1)
                 obj_board.matrix[x][j] = " "
                 if type(obj_board.matrix[x+1][j+1]) == int:
                     obj_board.matrix[x+1][j] = " "
@@ -43,7 +40,6 @@ class Explode(Bricks):
 
         for j in range(y,0,-2):
             if obj_board.matrix[x][j+1] == -10:
-                # time.sleep(1)
                 obj_board.matrix[x][j] = " "
                 if type(obj_board.matrix[x+1][j+1]) == int:
                     obj_board.matrix[x+1][j] = " "
